@@ -70,15 +70,21 @@ function stopContextVideo() {
 }
 
 function handleVideoControlSelect(val) {
+  // O selo de status é opcional: a página de Acessibilidade não o exibe hoje.
+  const badge = document.getElementById('status-video-badge');
   if (val === 'desativado') {
     systemVideoActive = false;
     stopContextVideo();
-    document.getElementById('status-video-badge').textContent = 'Inativo';
-    document.getElementById('status-video-badge').className = 'badge-status';
+    if (badge) {
+      badge.textContent = 'Inativo';
+      badge.className = 'badge-status';
+    }
   } else {
     systemVideoActive = true;
-    document.getElementById('status-video-badge').textContent = 'Ativo';
-    document.getElementById('status-video-badge').className = 'badge-status status-active';
+    if (badge) {
+      badge.textContent = 'Ativo';
+      badge.className = 'badge-status status-active';
+    }
   }
 }
 
